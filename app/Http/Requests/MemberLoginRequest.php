@@ -18,18 +18,18 @@ class MemberLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'email' => 'required',
-            'password' => 'required',
-
+            'email'    => 'required|email',
+            'password' => 'required|string|min:6',
         ];
     }
+
     public function messages()
     {
         return [
-            'required' => ':attribute: Khong duoc phep de trong',
-
-
+            'email.required'    => 'Email không được để trống',
+            'email.email'       => 'Email không hợp lệ',
+            'password.required' => 'Mật khẩu không được để trống',
+            'password.min'      => 'Mật khẩu phải có ít nhất :min ký tự',
         ];
     }
     /**

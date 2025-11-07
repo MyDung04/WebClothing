@@ -15,13 +15,17 @@ class AdminAuthentication
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        // if (Auth::check() && Auth::user()->level == 1) {
-        //     return $next($request);
-        // } else {
-        //     Auth::logout();
-        //     return redirect('/login');
-        // }
+        // echo 1111;
+        // exit;
+        if (Auth::check() && Auth::user()->level == 1) {
+
+            return $next($request);
+        } else {
+
+            Auth::logout();
+            return redirect('/login');
+        }
     }
 }

@@ -73,7 +73,7 @@
                             @if(Auth::check())
                             <li><a href="{{ url('/member/logout') }}"><i class="fa fa-lock"></i> Logout</a></li>
                             @else
-                            <li><a href="{{ url('/member/logout') }}"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="{{ url('/member/login') }}"><i class="fa fa-lock"></i> Login</a></li>
                             @endif
 
 

@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Empty_;
+use Symfony\Component\Console\Input\Input;
 
 class DashboardController extends Controller
 {
@@ -161,9 +163,51 @@ class DashboardController extends Controller
         return view('frontend.dashboard.search', compact('product'));
     }
 
-    public function SearchAdvance() {}
+    public function GetSearch()
+    {
+        return view('frontend.dashboard.search');
+    }
+    public function SearchAdvance(Request $request)
+    {
+        // dd($request->all());
+        $product = Product::query();
+        $check = 0;
+        if (!empty($request->search)) {
+            $text = $request->search;
+            $product = $product->where("title", 'LIKE', "%{$text}%");
+        }
+        if (!empty($request->price)) {
+            [$min, $max] = explode('-', $request->price);
+            $product->whereBetween('price', [(int)$min, (int)$max]);
+        }
+        if (!empty($request->category)) {
+            $product->where('id_category', $request->category);
+        }
+        if (!empty($request->brand)) {
+            $product->where('id_brand', $request->brand);
+        }
+        if (!empty($request->status)) {
+            $product->where('status', $request->status);
+        }
 
+        $product = $product->get();
+        return view('frontend.dashboard.search', compact('product'));
+    }
 
+    public function slidesearchajax(Request $request)
+    {
+        $min = $request->min;
+        $max = $request->max;
+        $product = Product::whereBetween('price', [$min, $max])->get();
+
+        //render=>biến view thành chuỗi HTML
+        $html = view('frontend.dashboard.ajax', compact('product'))->render();
+
+        return response()->json([
+            'status' => 'success',
+            'html' => $html
+        ]);
+    }
 
 
 

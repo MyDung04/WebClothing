@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\Constraint\Count;
 
 class UserController extends Controller
 {
@@ -66,6 +67,53 @@ class UserController extends Controller
         // $user = User::find(1);
         // return view("admin.user.profile", compact('user'));
     }
+
+    public function GetUser()
+    {
+        $data = User::all();
+        $country = Country::all();
+        return view('admin.user.user', compact('data', 'country'));
+    }
+
+    public function GetEdit($id)
+    {
+        $user = User::FindOrFail($id);
+        $country = Country::all();
+        return view('admin.user.edit', compact('user', 'country'));
+    }
+    public function PostEdit(Request $request)
+    {
+        $data = $request->all();
+        $user = User::where('id', $data['id'])->first();
+        $file = $request->avatar;
+        if (!empty($file)) {
+            $data['avatar'] = $file->getClientOriginalName();
+        }
+        if ($data['password']) {
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            $data['password'] = $user->password;
+        }
+        if ($user->update($data)) {
+            if (!empty($file)) {
+                $file->move('assets/images/users', $file->getClientOriginalName());
+            }
+            return redirect()->route('user')->with('success', __("Update profile success"));
+        } else {
+
+            return redirect()->back()->withErrors(['error' => 'Update profile error']);
+        }
+    }
+
+    public function Delete($id)
+    {
+
+        User::where('id', $id)->delete();
+        $data = User::all();
+        $country = Country::all();
+        return view("admin.user.user", compact('data', 'country'));
+    }
+
     public function index()
     {
         //

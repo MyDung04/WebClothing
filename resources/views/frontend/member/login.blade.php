@@ -19,6 +19,7 @@
                             <input type="checkbox" class="checkbox">
                             Keep me signed in
                         </span>
+                        <p><a href="{{url('/forgot')}}">? Forgot Password</a></p>
                         <button type="submit" class="btn btn-default">Login</button>
                         @if($errors->any())
                         <div class="alert alert-success alert-dismissible">

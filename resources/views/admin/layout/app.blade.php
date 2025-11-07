@@ -103,19 +103,19 @@
     </script> -->
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <script>
-    ClassicEditor
-        .create(document.querySelector('#editor1'), {
-            ckfinder: {
-                uploadUrl: '/WebShop/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
-            }
+        ClassicEditor
+            .create(document.querySelector('#editor1'), {
+                ckfinder: {
+                    uploadUrl: '/WebShop/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
+                }
 
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
-
+    @yield('zoom')
 </body>
 
 </html>

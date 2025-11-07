@@ -18,6 +18,7 @@
     <link href="{{ asset('css/rate.css') }}" rel="stylesheet">
     <link href="{{ asset('css/prettyPhoto.css') }}" rel="stylesheet">
 
+    <!-- Bootstrap Slider -->
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -30,6 +31,7 @@
         href="{{ asset('images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
         href="{{ asset('images/ico/apple-touch-icon-72-precomposed.png') }}">
+
     <link rel="apple-touch-icon-precomposed" href="{{ asset('images/ico/apple-touch-icon-57-precomposed.png') }}">
 </head>
 <!--/head-->
@@ -66,7 +68,7 @@
 
 
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
@@ -74,7 +76,9 @@
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
     <script type="text/javascript">
         $(document).ready(function() {
             $("a[rel^='prettyPhoto']").prettyPhoto();

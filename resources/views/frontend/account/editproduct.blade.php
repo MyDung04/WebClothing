@@ -39,7 +39,8 @@
 
                 <div class="img" style="display: flex; gap: 200px; margin-left:10px">
                     @foreach($image as $img)
-                    <img src="{{ asset('/frontend/images/products/'.$img)}}" style="width: 100px; height:100px;">
+                    <img src="{{ asset('frontend/images/products/'.$product->id_user.'/'.$img) }}"
+                        style="width: 100px; height:100px;">
                     @endforeach
                 </div>
                 <div class="checkbox-row" style="display: flex;">
